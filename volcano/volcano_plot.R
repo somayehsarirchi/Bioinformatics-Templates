@@ -1,5 +1,6 @@
+# volcano_plot.R
 # Generate a Volcano Plot from DESeq2 results with thresholds and gene labels
-
+install.packages("ggrepel")
 library(ggplot2)
 library(ggrepel)  # For nice text labels
 
@@ -25,3 +26,4 @@ p <- ggplot(res, aes(x = log2FoldChange, y = -log10(padj), color = significant))
 
 # Save the plot
 ggsave("volcano_plot.png", p, width = 6, height = 5)
+
