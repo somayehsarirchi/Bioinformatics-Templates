@@ -7,11 +7,19 @@ This repository contains modular R scripts and example datasets for common bioin
 
 ---
 
+## Version
+
+**v1.0.0** – Initial release with core functionality: DESeq2, VCF filtering, heatmap and volcano plot templates.
+
+---
+
 ## Folder Structure
 
 ```
 Bioinformatics-Templates/
 ├── README.md
+├── CITATION.cff
+├── LICENSE
 ├── demo_analysis.Rmd
 ├── deseq2/
 │   ├── DESeq2_pipeline.R
@@ -86,7 +94,16 @@ Open `demo_analysis.Rmd` in RStudio and click **Knit** to generate a combined HT
 ---
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
+
+MIT License © 2025 Somayeh Sarirchi
+
+---
+
+## Citation
+
+If you use any part of this repository, please cite it using the information in the [`CITATION.cff`](CITATION.cff) file.
 
 ---
 
