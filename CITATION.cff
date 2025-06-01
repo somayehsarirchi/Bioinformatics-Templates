@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "Bioinformatics Analysis Templates"
+version: "1.0.0"
+doi: ""
+authors:
+  - family-names: Sarirchi
+    given-names: Somayeh
+    email: s.sarirchi@gmail.com
+    affiliation: Independent Bioinformatics Scientist
+date-released: 2025-06-01
+url: "https://github.com/somayehsarirchi/Bioinformatics-Templates"
+license: MIT
