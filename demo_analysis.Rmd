@@ -1,0 +1,46 @@
+
+---
+title: "RNA-seq Differential Expression Analysis"
+author: "Somayeh Sarirchi"
+output: html_document
+---
+
+## Introduction
+
+This is a basic demonstration of differential expression analysis using DESeq2. The data used here are synthetic and serve as an illustrative example.
+
+## Data
+
+```{r read-data, message=FALSE, warning=FALSE}
+expr <- read.csv("data/expression_matrix.csv", row.names = 1)
+head(expr)
+```
+
+## DESeq2 Analysis
+
+```{r deseq2, message=FALSE, warning=FALSE}
+library(DESeq2)
+group <- factor(c(rep("Control", 3), rep("Treatment", 3)))
+colData <- data.frame(row.names = colnames(expr), condition = group)
+dds <- DESeqDataSetFromMatrix(countData = expr, colData = colData, design = ~ condition)
+dds <- DESeq(dds)
+res <- results(dds)
+summary(res)
+```
+
+## Volcano Plot
+
+```{r volcano, message=FALSE, warning=FALSE}
+with(res, plot(log2FoldChange, -log10(pvalue), pch=20, main="Volcano Plot", col=ifelse(padj < 0.05, "red", "black")))
+```
+
+## Export Results
+
+```{r export, message=FALSE, warning=FALSE}
+write.csv(as.data.frame(res), "results/DESeq2_results.csv")
+```
+
+## Conclusion
+
+This workflow can be extended and customized to accommodate more complex designs and integration with external annotation tools.
+
