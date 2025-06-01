@@ -1,1 +1,0 @@
-# Template script for Heatmap
