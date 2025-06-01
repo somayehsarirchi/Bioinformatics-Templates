@@ -1,46 +1,29 @@
-
----
-title: "RNA-seq Differential Expression Analysis"
+title: "Demo Bioinformatics Analysis"
 author: "Somayeh Sarirchi"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
-## Introduction
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 
-This is a basic demonstration of differential expression analysis using DESeq2. The data used here are synthetic and serve as an illustrative example.
+1. DESeq2 Differential Expression Analysis
 
-## Data
+source("deseq2/DESeq2_pipeline.R")
+head(read.csv("deseq2/DESeq2_results.csv"))
 
-```{r read-data, message=FALSE, warning=FALSE}
-expr <- read.csv("data/expression_matrix.csv", row.names = 1)
-head(expr)
-```
+2. Heatmap Visualization
 
-## DESeq2 Analysis
+source("heatmap/Heatmap_Template.R")
+knitr::include_graphics("heatmap/heatmap.png")
 
-```{r deseq2, message=FALSE, warning=FALSE}
-library(DESeq2)
-group <- factor(c(rep("Control", 3), rep("Treatment", 3)))
-colData <- data.frame(row.names = colnames(expr), condition = group)
-dds <- DESeqDataSetFromMatrix(countData = expr, colData = colData, design = ~ condition)
-dds <- DESeq(dds)
-res <- results(dds)
-summary(res)
-```
+3. Volcano Plot
 
-## Volcano Plot
+source("volcano/volcano_plot.R")
+knitr::include_graphics("volcano/volcano_plot.png")
 
-```{r volcano, message=FALSE, warning=FALSE}
-with(res, plot(log2FoldChange, -log10(pvalue), pch=20, main="Volcano Plot", col=ifelse(padj < 0.05, "red", "black")))
-```
+4. VCF Filtering
 
-## Export Results
-
-```{r export, message=FALSE, warning=FALSE}
-write.csv(as.data.frame(res), "results/DESeq2_results.csv")
-```
-
-## Conclusion
-
-This workflow can be extended and customized to accommodate more complex designs and integration with external annotation tools.
+source("vcf_filtering/VCF_Filtering.R")
+head(read.csv("vcf_filtering/vcf_filtered.csv"))
 
