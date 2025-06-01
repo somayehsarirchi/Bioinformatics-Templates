@@ -10,21 +10,24 @@ This repository contains modular and reusable R and Bash scripts for analyzing b
 
 Bioinformatics-Templates/
 ├── README.md
-├── scripts/
-│ ├── DESeq2_pipeline.R
-│ ├── VolcanoPlot.R
-│ ├── Heatmap_Template.R
-│ └── VCF_Filtering.R
-├── data/
-│ ├── example_counts.txt
-│ └── example_metadata.csv
-└── results/
-└── demo_volcano_plot.png # optional
-
-yaml
-Copy
-Edit
-
+├── demo_analysis.Rmd
+├── deseq2/
+│   ├── DESeq2_pipeline.R
+│   ├── DESeq2_results.csv
+│   ├── example_counts.txt
+│   └── example_metadata.csv
+├── heatmap/
+│   ├── Heatmap_Template.R
+│   ├── heatmap.png
+│   └── normalized_counts.csv
+├── vcf_filtering/
+│   ├── VCF_Filtering.R
+│   ├── myvcf.vcf
+│   └── vcf_filtered.csv
+└── volcano/
+    ├── volcano_plot.R
+    ├── volcano_plot.png
+    └── expression_matrix.csv
 ---
 
 ## 📜 Included Scripts
@@ -46,6 +49,36 @@ Edit
 | `example_metadata.csv` | Sample group labels (Control / Case)             |
 
 ---
+Scripts Overview
+
+DESeq2_pipeline.R: Full workflow for identifying differentially expressed genes using count and metadata input.
+
+Heatmap_Template.R: Generates clustered heatmaps using normalized expression data.
+
+VCF_Filtering.R: Parses and filters raw VCF data (SNP, InDel, Mixed) based on quality metrics (QD, FS, DP, GQ, SOR).
+
+volcano_plot.R: Plots log2FoldChange vs. -log10(p-value) from DESeq2 results.
+
+Usage
+
+Each subfolder is self-contained. You can:
+
+Download the full repo.
+
+Navigate to a specific folder (e.g. deseq2/).
+
+Run the corresponding .R script using R or RStudio.
+
+Requirements
+
+R >= 4.2
+
+R packages: DESeq2, ggplot2, pheatmap, readr, dplyr, Hmisc, enrichR, etc.
+
+For exact package requirements, see each script's header.
+
+
+
 
 ## ▶️ How to Use
 
