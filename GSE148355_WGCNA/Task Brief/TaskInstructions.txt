@@ -1,1 +1,18 @@
 
+Task Title: WGCNA Analysis of RNA-Seq Data from GSE148355
+
+Objective:
+Perform a Weighted Gene Co-expression Network Analysis (WGCNA) on a publicly available RNA-Seq dataset (GSE148355) to identify modules of co-expressed genes and determine their association with clinical traits such as population type, gender, and age. Subsequently, identify hub genes within the most relevant module.
+
+Client Requirements (Hypothetical):
+- Use raw count data (from GEO) for input.
+- Perform filtering for highly variable genes.
+- Determine optimal soft-thresholding power.
+- Construct a gene network, detect modules, and correlate with traits.
+- Identify and annotate hub genes in the green module.
+- Visualize results in dendrograms, heatmaps, and MM vs GS plots.
+- Export annotated gene expression data and hub genes.
+
+Notes:
+- Dataset GSE148355 is sourced from the GEO database (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148355) and is publicly available.
+- No personally identifiable information (PII) or confidential data is included in the analysis.
