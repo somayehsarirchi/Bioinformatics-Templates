@@ -1,1 +1,8 @@
+Reference genome used:
+HISAT2-indexed hg38 (GRCh38), downloaded from:
+https://daehwankimlab.github.io/hisat2/#download
+
+Annotation:
+Homo_sapiens.GRCh38.109.gtf from Ensembl:
+https://ftp.ensembl.org/pub/release-109/gtf/homo_sapiens/
 
