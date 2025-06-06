@@ -1,19 +1,19 @@
-
 # Bioinformatics Analysis Templates
 
-This repository contains modular R scripts and example datasets for common bioinformatics tasks, including bulk RNA-Seq differential expression (DESeq2), variant filtering from WES VCF files, heatmap generation, and volcano plot visualization. Each folder contains necessary scripts, inputs, and representative outputs.
+This repository contains modular R/bash pipelines and example datasets for common bioinformatics workflows. It includes end-to-end analysis scripts and results for:
 
-> ⚠️ All data included are for demonstration only.
+- 🧬 Bulk RNA-Seq differential expression analysis (DESeq2)
+- 🔍 Variant filtering from WES VCF files
+- 🌡 Heatmap generation
+- 🌋 Volcano plot visualization
+- 🧪 Weighted Gene Co-expression Network Analysis (WGCNA)
+- 🔁 Raw RNA-Seq data preprocessing from FASTQ to Count Matrix
+
+⚠️ **All data and results are included for demonstration purposes only and contain no real patient identifiers or confidential content.**
 
 ---
 
-## Version
-
-**v1.0.0** – Initial release with core functionality: DESeq2, VCF filtering, heatmap and volcano plot templates.
-
----
-
-## Folder Structure
+## 📁 Folder Structure
 
 ```
 Bioinformatics-Templates/
@@ -21,94 +21,88 @@ Bioinformatics-Templates/
 ├── CITATION.cff
 ├── LICENSE
 ├── demo_analysis.Rmd
-├── deseq2/
-│   ├── DESeq2_pipeline.R
-│   ├── DESeq2_results.csv
-│   ├── example_counts.txt
-│   └── example_metadata.csv
-├── heatmap/
-│   ├── Heatmap_Template.R
-│   ├── heatmap.png
-│   └── normalized_counts.csv
-├── vcf_filtering/
-│   ├── VCF_Filtering.R
-│   ├── myvcf.vcf
-│   └── vcf_filtered.csv
-└── volcano/
-    ├── volcano_plot.R
-    ├── volcano_plot.png
-    └── expression_matrix.csv
+├── deseq2/                   # DESeq2 pipeline + example data
+├── heatmap/                  # Heatmap template + matrix
+├── volcano/                  # Volcano plot script + matrix
+├── vcf_filtering/            # VCF filtering script + demo data
+├── Raw_FASTQ_to_CountMatrix/ # Raw FASTQ → Count Matrix Bash pipeline
+│   └── scripts/
+├── GSE148355_WGCNA/          # WGCNA analysis example on GEO dataset
 ```
 
 ---
 
-## Scripts Overview
+## 📜 Scripts Overview
 
-| Script Name           | Description                                                                 |
-|----------------------|-----------------------------------------------------------------------------|
-| DESeq2_pipeline.R     | Normalizes RNA-Seq count data and identifies differentially expressed genes |
-| Heatmap_Template.R    | Draws a heatmap of selected or all genes using scaled expression data       |
-| VCF_Filtering.R       | Parses and filters VCF data based on quality, depth, and other metrics      |
-| volcano_plot.R        | Generates a volcano plot from DESeq2 results                               |
-
----
-
-## Sample Data
-
-| File                  | Description                                        |
-|-----------------------|----------------------------------------------------|
-| example_counts.txt     | Simulated count matrix (genes × samples)          |
-| example_metadata.csv   | Sample group labels (Control / Case)              |
-| expression_matrix.csv  | Matrix for visualization (heatmap, volcano)       |
-| myvcf.vcf              | Sample VCF file (simplified for demo)             |
-| vcf_filtered.csv       | Filtered variant calls after quality control      |
+| Script Name                 | Description                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| `DESeq2_pipeline.R`         | Normalize RNA-Seq counts and identify DEGs                                  |
+| `Heatmap_Template.R`        | Generate clustered heatmap from expression matrix                           |
+| `volcano_plot.R`            | Create volcano plot of DEGs from DESeq2 results                             |
+| `VCF_Filtering.R`           | Apply filters to VCF files based on quality/depth/etc.                      |
+| `pipeline.sh`               | Bash pipeline from `fastq-dump` to `htseq-count`                            |
+| `WGCNA_analysis.R`          | Full WGCNA pipeline using GSE148355 dataset                                 |
 
 ---
 
-## How to Use
+## 📂 Sample Data
 
-1. **Clone the repository:**
+| File                        | Description                                               |
+|----------------------------|-----------------------------------------------------------|
+| `example_counts.txt`        | Simulated raw count matrix                                |
+| `example_metadata.csv`      | Sample metadata with group labels                        |
+| `expression_matrix.csv`     | Expression matrix for heatmap/volcano                    |
+| `myvcf.vcf`                 | Demo VCF file for variant filtering                      |
+| `vcf_filtered.csv`          | Filtered VCF output                                      |
+| `GSE148355_raw_counts.csv`  | Real RNA-Seq counts from GEO                              |
+| `traits.csv`                | Sample traits (e.g. group, gender, age)                  |
+
+---
+
+## 🚀 How to Use
+
+1. Clone the repository:
 ```bash
 git clone https://github.com/somayehsarirchi/Bioinformatics-Templates.git
 cd Bioinformatics-Templates
 ```
 
-2. **Navigate to a specific folder** (e.g. `deseq2/`, `vcf_filtering/`)
+2. Navigate to the relevant analysis folder (e.g., `deseq2/`, `GSE148355_WGCNA/`)
 
-3. **Run the corresponding script** in R or RStudio:
+3. Run the script in R, RStudio, or terminal:
 ```r
 source("DESeq2_pipeline.R")
 ```
 
-4. **Render demo notebook:**
-Open `demo_analysis.Rmd` in RStudio and click **Knit** to generate a combined HTML report.
+4. Render the demo notebook (optional):
+Open `demo_analysis.Rmd` in RStudio and click **Knit** to generate the report.
 
 ---
 
-## Requirements
+## ⚙️ Requirements
 
 - R version ≥ 4.2
-- Required packages: `DESeq2`, `ggplot2`, `pheatmap`, `readr`, `dplyr`, `Hmisc`, `enrichR`, etc.
-- All scripts include package calls and error handling.
+- Tools: [sratoolkit](https://github.com/ncbi/sra-tools), [HISAT2](https://daehwankimlab.github.io/hisat2/), [HTSeq](https://htseq.readthedocs.io/)
+- Required R packages: `DESeq2`, `WGCNA`, `pheatmap`, `ggplot2`, `readr`, `Hmisc`, `enrichR`, etc.
+- Bash and Java (for FASTQ processing)
 
 ---
 
-## License
+## 📜 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
-
-MIT License © 2025 Somayeh Sarirchi
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-## Citation
+## 📖 Citation
 
-If you use any part of this repository, please cite it using the information in the [`CITATION.cff`](CITATION.cff) file.
+If you use this repository or any part of it, please cite it using the information in the `CITATION.cff` file.
 
 ---
 
-## Author
+## 👩‍🔬 Author
+
 **Somayeh Sarirchi**  
 Bioinformatics Scientist  
-📧 [s.sarirchi@gmail.com](mailto:s.sarirchi@gmail.com)  
+📧 s.sarirchi@gmail.com  
 🔗 [GitHub Profile](https://github.com/somayehsarirchi)
