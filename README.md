@@ -5,6 +5,7 @@ This repository contains modular R/bash pipelines and example datasets for commo
 - 🧬 Bulk RNA-Seq differential expression analysis (DESeq2)
 - 🌡 Heatmap generation
 - 🌋 Volcano plot visualization
+- 🧬 VCF filtering for WES-derived variant files
 - 🧪 Weighted Gene Co-expression Network Analysis (WGCNA)
 - 🔁 Raw RNA-Seq data preprocessing from FASTQ to Count Matrix
 
