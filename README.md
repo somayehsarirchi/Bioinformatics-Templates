@@ -3,7 +3,6 @@
 This repository contains modular R/bash pipelines and example datasets for common bioinformatics workflows. It includes end-to-end analysis scripts and results for:
 
 - 🧬 Bulk RNA-Seq differential expression analysis (DESeq2)
-- 🔍 Variant filtering from WES VCF files
 - 🌡 Heatmap generation
 - 🌋 Volcano plot visualization
 - 🧪 Weighted Gene Co-expression Network Analysis (WGCNA)
