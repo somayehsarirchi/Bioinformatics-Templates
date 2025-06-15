@@ -1,99 +1,63 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey.svg" alt="License: CC BY 4.0">
-  <img src="https://img.shields.io/badge/language-R-blue" alt="Language: R">
-</p>
+# Differential Gene Expression Analysis — GSE148355
 
-# Combining WGCNA and DEG Analysis with Prioritization of Enrichment Results for Kidney Allograft Biomarkers
+This folder contains a complete DESeq2-based analysis of the **GSE148355** dataset, which compares **liver tissue samples from total hepatectomy patients** versus **normal tissues**.
 
-## Introduction
+## 📌 Objective
 
-This repository provides a comprehensive workflow for integrating Weighted Gene Co-expression Network Analysis (WGCNA) and Differential Expression Analysis (DEGs), followed by prioritization of enrichment results. The goal is to identify biologically meaningful hub genes and key biomarkers involved in chronic kidney allograft rejection.
-
-## Project Workflow
-
-- **WGCNA Analysis**: Construct gene co-expression networks, detect and merge modules.
-- **DEG Analysis**: Identify differentially expressed genes between control and rejection samples.
-- **Intersection Analysis**: Extract overlapping genes between WGCNA modules and DEGs.
-- **Hub Gene Selection**: Rank hub genes based on network centrality metrics.
-- **Prioritization of Enrichment Results**: Filter pathways, GO terms, and diseases based on hub gene involvement and statistical significance.
-- **Visualization**: Create bubble plots and disease-gene networks for the final results.
+Identify significantly differentially expressed genes (DEGs) between two groups (hepatectomy vs. normal tissue), and visualize the results using standard bioinformatics plots.
 
 ---
 
-## Repository Structure
+## 🧬 Dataset Description
 
-```
-WGCNA_DEGs_validation/
-├── code/
-│   ├── 01_WGCNA_Analysis.R
-│   ├── 02_DEGs_Analysis.R
-│   ├── 03_Intersect_Analysis.R
-│   ├── 04_Select_TopHubGenes_Gephi.R
-│   ├── 05_Select_SharedHubGenes.R
-│   ├── 06_Pathways_Filtering.R
-│   ├── 07_GO_Filtering.R
-│   ├── 08_Disease_Filtering.R
-│   └── 09_BubblePlots.R
-│
-├── data/
-│   ├── GSE192444_series_matrix.csv
-│   ├── GSE192444Groups.csv
-│   ├── familySoft_mini.csv
-│   ├── GSE261892_raw_counts_GRCh38.p13_NCBI.csv
-│   └── GSE261892DEGs.csv
-│
-├── results/
-│   ├── WGCNA/
-│   │   └── [Module gene lists, intermediate WGCNA results]
-│   ├── Plots/
-│   │   └── [Final visualizations: bubble plots, disease-gene networks]
-│   ├── Filtered_Enriched_Pathways.csv
-│   ├── Filtered_Enriched_GO.csv
-│   ├── Filtered_Enriched_Diseases.csv
-│   └── [Other processed and filtered results]
-│
-├── README.md
-└── LICENSE
-```
+- **Source:** [GEO: GSE148355](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148355)  
+- **Groups:**
+  - **Case:** Total hepatectomy samples (e.g., GSM4462519–GSM4462583)
+  - **Control:** Normal liver tissues (e.g., GSM4462456–GSM4462471)
 
 ---
 
-## How to Use
+## 🧪 Analysis Pipeline
 
-1. **Clone the repository**:
+The analysis was performed in R using the following steps:
 
-   ```bash
-   git clone https://github.com/somayehsarirchi/WGCNA_DEGs_validation.git
-   ```
+1. Load raw count matrix and gene annotation
+2. Filter low-expression and low-variance genes
+3. Construct metadata and create DESeq2 object
+4. Run DESeq2 and apply log2 fold change shrinkage with `apeglm`
+5. Export full and filtered DEG lists
+6. Visualize results using:
+   - MA Plot
+   - Volcano plot (all genes & top 20)
+   - Heatmap of significant genes
 
-2. **Set up your environment**:
-   - Install R (version 4.0 or higher) and RStudio.
-
-3. **Install the required R packages**:
-
-   ```r
-   install.packages(c("WGCNA", "limma", "DESeq2", "ggplot2", "igraph", "reshape2"))
-   ```
-
-4. **Run the scripts sequentially**:
-   - Start with `01_WGCNA_Analysis.R`, then continue through to `09_BubblePlots.R`.
-
-5. **Review your results**:
-   - Outputs will be saved in the `results/` folder, organized by analysis type.
+> 📂 See the R script: `DEG_analysis_GSE148355.R`
 
 ---
 
-## Data Sources
+## 📁 Output Files
 
-- [GSE192444 - Peripheral blood and Biopsy samples](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE192444)
-- [GSE261892 - Biopsy samples](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE261892)
+| File | Description |
+|------|-------------|
+| `DEGs_GSE148355_filtered.csv` | Table of significant DEGs (FDR < 0.05 and |log2FC| > 1) |
+| `res-plot.pdf`                | MA plot of DEGs |
+| `Volcano3.pdf`               | Volcano plot with top 20 genes |
+| `Heatmap-top.pdf`           | Heatmap of most significant DEGs |
 
-## License
+---
 
-This project is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+## 📦 Required Packages
 
-## Citation
+- DESeq2
+- apeglm
+- ggplot2
+- RColorBrewer
+- pheatmap
+- EnhancedVolcano
 
-If you use this repository, please cite it as:
+You can install the missing packages using:
 
-> Sarirchi, S. (2025). *Combining WGCNA and DEG Analysis with Prioritization of Enrichment Results for Kidney Allograft Biomarkers*. GitHub repository. [https://github.com/somayehsarirchi/WGCNA_DEGs_validation](https://github.com/somayehsarirchi/WGCNA_DEGs_validation)
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install(c("DESeq2", "apeglm", "EnhancedVolcano"))
+install.packages(c("pheatmap", "ggplot2", "RColorBrewer"))
