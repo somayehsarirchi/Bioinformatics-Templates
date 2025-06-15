@@ -61,7 +61,7 @@ You can install the missing packages using:
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install(c("DESeq2", "apeglm", "EnhancedVolcano"))
 install.packages(c("pheatmap", "ggplot2", "RColorBrewer"))
-
+```
 
 
 ## 📘 License
