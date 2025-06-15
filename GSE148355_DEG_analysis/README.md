@@ -63,6 +63,8 @@ BiocManager::install(c("DESeq2", "apeglm", "EnhancedVolcano"))
 install.packages(c("pheatmap", "ggplot2", "RColorBrewer"))
 
 
+
+
 ## 📘 License
 This example is provided as part of the Bioinformatics-Templates repository under the MIT License.
 
