@@ -94,9 +94,12 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-## 📖 Citation
+## 📦 Citation
 
-If you use this repository or any part of it, please cite it using the information in the `CITATION.cff` file.
+If you use this repository or its scripts, please cite it as:
+
+Somayeh Sarirchi (2025). *Bioinformatics Analysis Templates: RNA-seq, VCF filtering, and Visualization Pipelines*. GitHub repository: https://github.com/somayehsarirchi/Bioinformatics-Templates  
+DOI: [10.5281/zenodo.16493302](https://doi.org/10.5281/zenodo.16493302)
 
 ---
 
